@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), "..", "lib")
+
+require "sinatra"
+require "sass/plugin/rack"
+
+Sass::Plugin.options[:style] = :compressed
+use Sass::Plugin::Rack
+
+require "main"
+Main.run!
