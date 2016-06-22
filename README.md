@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/octopusinvitro/twitter-api.svg?branch=master)](https://travis-ci.org/octopusinvitro/twitter-api)
 [![build status](https://gitlab.com/me-stevens/twitter-api/badges/master/build.svg)](https://gitlab.com/me-stevens/twitter-api/commits/master)
-
+[![Code Climate](https://codeclimate.com/github/octopusinvitro/twitter-api/badges/gpa.svg)](https://codeclimate.com/github/octopusinvitro/twitter-api)
 
 # Readme
 
