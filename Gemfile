@@ -11,4 +11,5 @@ group :test do
   gem "rspec",  ">=3.4.0", :require => "spec"
   gem "pry"
   gem 'coveralls', require: false
+  gem "codeclimate-test-reporter", group: :test, require: nil
 end
