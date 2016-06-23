@@ -1,6 +1,5 @@
-require "main"
-
 describe "Main" do
+
   def app
     Main.new
   end

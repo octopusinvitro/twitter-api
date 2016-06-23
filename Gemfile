@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
 gem "sinatra"
-# gem "sass", "~> 3.4", ">= 3.4.22"
-# gem 'oauth', '~> 0.5.1'
-# gem 'webmock', '~> 2.1'
+gem "sass", "~> 3.4", ">= 3.4.22"
+gem 'oauth', '~> 0.5.1'
+gem 'webmock', '~> 2.1'
 
 group :test do
   gem "rake"
