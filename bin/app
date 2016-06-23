@@ -12,5 +12,6 @@ use Sass::Plugin::Rack
 require "constants"
 require "net_http"
 require "net_http_get"
+require "connect"
 require "main"
 Main.run!
