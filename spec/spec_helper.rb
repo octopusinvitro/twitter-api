@@ -8,9 +8,11 @@ require "webmock/rspec"
 require "oauth"
 
 require "constants"
+require "messages"
 require "net_http"
 require "net_http_get"
 require "connect"
+require "parser"
 require "main"
 
 CodeClimate::TestReporter.start
