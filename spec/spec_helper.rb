@@ -9,6 +9,7 @@ require "oauth"
 
 require "constants"
 require "net_http"
+require "net_http_get"
 require "main"
 
 CodeClimate::TestReporter.start
