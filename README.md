@@ -2,7 +2,6 @@
 [![build status](https://gitlab.com/octopusinvitro/twitter-api/badges/master/build.svg)](https://gitlab.com/octopusinvitro/twitter-api/commits/master)
 [![Coverage Status](https://coveralls.io/repos/github/octopusinvitro/twitter-api/badge.svg?branch=master)](https://coveralls.io/github/octopusinvitro/twitter-api?branch=master)
 [![Code Climate](https://codeclimate.com/github/octopusinvitro/twitter-api/badges/gpa.svg)](https://codeclimate.com/github/octopusinvitro/twitter-api)
-[![Test Coverage](https://codeclimate.com/github/octopusinvitro/twitter-api/badges/coverage.svg)](https://codeclimate.com/github/octopusinvitro/twitter-api/coverage)
 
 # Readme
 

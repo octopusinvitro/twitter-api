@@ -1,5 +1,4 @@
 ENV["RACK_ENV"] = "test"
-require "codeclimate-test-reporter"
 require 'coveralls'
 
 require "sinatra"
@@ -15,7 +14,6 @@ require "connect"
 require "parser"
 require "main"
 
-CodeClimate::TestReporter.start
 Coveralls.wear!
 WebMock.disable_net_connect!(allow_localhost: true)
 
