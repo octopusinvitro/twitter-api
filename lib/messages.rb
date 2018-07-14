@@ -1,5 +1,6 @@
-module Messages
+# frozen_string_literal: true
 
+module Messages
   def self.success(name)
     "Hello, #{name}!"
   end
@@ -7,5 +8,4 @@ module Messages
   def self.failure(code)
     "Sorry, expected a response of 200 but got #{code} instead"
   end
-
 end

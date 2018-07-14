@@ -1,5 +1,6 @@
-class NetHttpGet
+# frozen_string_literal: true
 
+class NetHttpGet
   attr_reader :request
 
   def initialize(request)
@@ -9,5 +10,4 @@ class NetHttpGet
   def oauth(client, consumer_key, access_token)
     request.oauth!(client, consumer_key, access_token)
   end
-
 end
