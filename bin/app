@@ -3,18 +3,18 @@
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-require "sinatra"
-require "oauth"
-require "sass/plugin/rack"
+require 'sinatra'
+require 'oauth'
+require 'sass/plugin/rack'
 
 Sass::Plugin.options[:style] = :compressed
 use Sass::Plugin::Rack
 
-require "constants"
-require "messages"
-require "net_http"
-require "net_http_get"
-require "connect"
-require "parser"
-require "main"
+require 'constants'
+require 'messages'
+require 'net_http'
+require 'net_http_get'
+require 'connect'
+require 'parser'
+require 'main'
 Main.run!

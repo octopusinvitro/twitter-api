@@ -1,5 +1,6 @@
-class Parser
+# frozen_string_literal: true
 
+class Parser
   def parse_user(response)
     contents = parse(response.body, symbolize_names: true)
     message  = success?(response) ? success(contents) : failure(response)
@@ -13,7 +14,7 @@ class Parser
   end
 
   def success?(response)
-    response.code == "200"
+    response.code == '200'
   end
 
   def success(contents)
@@ -30,5 +31,4 @@ class Parser
       message: message
     }
   end
-
 end

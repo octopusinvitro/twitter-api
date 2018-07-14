@@ -1,5 +1,6 @@
-class NetHttp
+# frozen_string_literal: true
 
+class NetHttp
   attr_reader :client
 
   def initialize(client)
@@ -18,5 +19,4 @@ class NetHttp
   def request(request)
     client.request(request)
   end
-
 end

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # http://asquera.de/blog/2015-03-30/testing-external-apis-in-ruby/
 class Connect
-
   def initialize(net_http, net_http_get)
     @net_http     = net_http
     @net_http_get = net_http_get
@@ -18,5 +19,4 @@ class Connect
   private
 
   attr_reader :net_http, :net_http_get
-
 end
