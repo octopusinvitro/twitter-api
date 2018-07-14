@@ -1,4 +1,8 @@
 language: ruby
-
 after_success:
 - coveralls --verbose
+rvm:
+- 2.5.1
+cache: bundler
+script:
+- bundle exec rake
