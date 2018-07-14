@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'Messages' do
+RSpec.describe 'Messages' do
   it 'prints welcome message with a name' do
     expect(Messages.success('Jane')).to include('Jane')
   end

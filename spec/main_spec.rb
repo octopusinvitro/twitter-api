@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'Main' do
+RSpec.describe 'Main' do
   def app
     Main.new
   end

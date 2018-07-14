@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'NetHttpGet' do
+RSpec.describe 'NetHttpGet' do
   let(:request)      { Net::HTTP::Get.new(VERIFY_URL.request_uri) }
   let(:net_http_get) { NetHttpGet.new(request) }
 

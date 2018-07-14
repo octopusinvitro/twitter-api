@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'NetHttp' do
+RSpec.describe 'NetHttp' do
   let(:client)   { Net::HTTP.new(VERIFY_URL.host, VERIFY_URL.port) }
   let(:net_http) { NetHttp.new(client) }
 

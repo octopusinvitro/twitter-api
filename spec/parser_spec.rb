@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'Parser' do
+RSpec.describe 'Parser' do
   let(:parser) { Parser.new }
   let(:net_http) do
     NetHttp.new(Net::HTTP.new(VERIFY_URL.host, VERIFY_URL.port))

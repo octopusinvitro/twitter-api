@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'Connect' do
+RSpec.describe 'Connect' do
   let(:net_http)     { double(NetHttp) }
   let(:net_http_get) { double(NetHttpGet) }
   let(:connect)      { Connect.new(net_http, net_http_get) }
