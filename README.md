@@ -47,22 +47,15 @@ $ rbenv rehash
 
 ```bash
 $ bundle install
-$ bundle exec rake
 ```
 
 
 ### To run the tests
 
 ```bash
-$ bundle exec rspec --color
-```
-
-
-### Another way of running them
-
-```bash
 $ bundle exec rake
 ```
+
 
 ### To run the app
 

@@ -55,6 +55,12 @@ build-iPhoneSimulator/
 # Mac debris
 **/.DS_Store
 
+# Sass
+*.map
+.sass-cache
+public/stylesheets/*.css
+!public/stylesheets/main.css
+
 # Test quality
 .coveralls.yml
 codeclimate-config.patch
