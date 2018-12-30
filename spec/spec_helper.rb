@@ -11,7 +11,7 @@ require 'oauth'
 
 require 'constants'
 require 'messages'
-require 'net_http'
+require 'secure_client'
 require 'net_http_get'
 require 'connect'
 require 'parser'
@@ -21,13 +21,7 @@ require 'pry'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 def stub(resp)
-  stub_request(:get, url).with(headers).to_return(resp)
-end
-
-def url
-  VERIFY_URL.to_s
-            .gsub('https', 'http')
-            .gsub('.com', ".com:#{VERIFY_URL.port}")
+  stub_request(:get, VERIFY_URL).with(headers).to_return(resp)
 end
 
 def headers

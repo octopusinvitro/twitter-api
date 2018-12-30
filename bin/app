@@ -12,7 +12,7 @@ use Sass::Plugin::Rack
 
 require 'constants'
 require 'messages'
-require 'net_http'
+require 'secure_client'
 require 'net_http_get'
 require 'connect'
 require 'parser'
