@@ -34,4 +34,13 @@ RSpec.describe Main do
     expect(last_response).to be_ok
     expect(last_response.body).to include('#HappyNewYear')
   end
+
+  it 'renders a timeline' do
+    stub_request(:get, "#{TIMELINE_URL}?screen_name=twitterapi&count=10")
+      .to_return(status: 200, body: File.read('spec/fixtures/timeline.json'))
+
+    get '/timeline', 'screen_name' => 'twitterapi'
+    expect(last_response).to be_ok
+    expect(last_response.body).to include('Twitter APIs')
+  end
 end

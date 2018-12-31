@@ -13,7 +13,7 @@ RSpec.describe ResponseParser do
     end
 
     it 'sends a welcome message' do
-      expect(user[:message]).to include('Jane')
+      expect(user[:message]).to include('Success')
     end
   end
 

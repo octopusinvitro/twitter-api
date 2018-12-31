@@ -4,7 +4,7 @@ require 'messages'
 
 RSpec.describe Messages do
   it 'prints welcome message with a name' do
-    expect(described_class.success('Jane')).to include('Jane')
+    expect(described_class.success).to include('Success')
   end
 
   it 'prints an error message with a code' do

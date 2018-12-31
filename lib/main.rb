@@ -36,6 +36,21 @@ class Main < Sinatra::Base
     erb :index
   end
 
+  get '/timeline' do
+    query = URI.encode_www_form(
+      'screen_name' => params['screen_name'],
+      'count' => 10
+    )
+    url = "#{TIMELINE_URL}?#{query}"
+
+    response = SecureClient.new(url, settings.credentials).verify_credentials
+    tweets = ResponseParser.new(response).parsed_response
+    @title = 'Timeline'
+    @contents = tweets[:contents].map { |tweet| tweet[:text] }
+    @message = tweets[:message]
+    erb :index
+  end
+
   not_found do
     status 404
     @title = 'Page Not Found'

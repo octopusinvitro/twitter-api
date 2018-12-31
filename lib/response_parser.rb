@@ -33,7 +33,7 @@ class ResponseParser
   end
 
   def success_message
-    Messages.success(contents[:screen_name])
+    Messages.success
   end
 
   def failure_message
