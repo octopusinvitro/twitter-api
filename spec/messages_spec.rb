@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Messages' do
+require 'messages'
+
+RSpec.describe Messages do
   it 'prints welcome message with a name' do
-    expect(Messages.success('Jane')).to include('Jane')
+    expect(described_class.success('Jane')).to include('Jane')
   end
 
   it 'prints an error message with a code' do
-    expect(Messages.failure('404')).to include('404')
+    expect(described_class.failure('404')).to include('404')
   end
 end

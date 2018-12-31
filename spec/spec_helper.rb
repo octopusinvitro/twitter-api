@@ -4,15 +4,10 @@ ENV['RACK_ENV'] = 'test'
 require 'coveralls'
 Coveralls.wear!
 
-require 'sinatra'
-require 'rack/test'
-require 'webmock/rspec'
-
-require 'messages'
-require 'connect'
-require 'parser'
-require 'main'
 require 'pry'
+require 'rack/test'
+require 'sinatra'
+require 'webmock/rspec'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
