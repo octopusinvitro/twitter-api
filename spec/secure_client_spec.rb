@@ -13,7 +13,8 @@ RSpec.describe SecureClient do
   end
 
   it 'sets up client to use SSL, which is required by Twitter' do
-    stub(status: 200, body: '{"screen_name": "Jane"}')
+    stub_request(:get, VERIFY_URL)
+      .to_return(status: 200, body: '{"screen_name": "Jane"}')
     secure_client.verify_credentials
     expect(secure_client.secure?).to be(true)
   end
@@ -40,7 +41,8 @@ RSpec.describe SecureClient do
     end
 
     it 'returns an OK response' do
-      stub(status: 200, body: '{"screen_name": "Jane"}')
+      stub_request(:get, VERIFY_URL)
+        .to_return(status: 200, body: '{"screen_name": "Jane"}')
       response = secure_client.verify_credentials
       expect(response.code).to eq('200')
     end
@@ -62,7 +64,7 @@ RSpec.describe SecureClient do
     end
 
     it 'returns a bad request error' do
-      stub(status: 400, body: '', headers: {})
+      stub_request(:get, VERIFY_URL).to_return(status: 400, body: '')
       response = secure_client.verify_credentials
       expect(response.code).to eq('400')
     end
