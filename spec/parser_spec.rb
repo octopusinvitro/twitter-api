@@ -2,11 +2,11 @@
 
 RSpec.describe 'Parser' do
   let(:parser) { Parser.new }
-  let(:response) { SecureClient.new.response }
+  let(:response) { SecureClient.new.verify_credentials }
 
   describe 'when response is successful' do
     before do
-      stub(status: 200, body: '{"screen_name": "Jane"}', headers: {})
+      stub(status: 200, body: '{"screen_name": "Jane"}')
     end
 
     it 'parses body' do
