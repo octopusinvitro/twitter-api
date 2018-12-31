@@ -1,10 +1,25 @@
 # frozen_string_literal: true
 
+require 'sinatra'
+
+require_relative 'constants'
+require_relative 'response_parser'
+require_relative 'secure_client'
+
 class Main < Sinatra::Base
   set :views, "#{settings.root}/../views"
+  set :credentials,
+      api_key: ENV['API_KEY'],
+      api_secret: ENV['API_SECRET'],
+      access_token: ENV['ACCESS_TOKEN'],
+      access_secret: ENV['ACCESS_SECRET']
 
   get '/' do
+    client = SecureClient.new(VERIFY_URL, settings.credentials)
+    user = ResponseParser.new(client.verify_credentials).parse_user
     @title = 'Hello'
+    @contents = user[:contents]
+    @message = user[:message]
     erb :index
   end
 

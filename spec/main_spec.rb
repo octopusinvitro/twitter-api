@@ -3,11 +3,10 @@
 require 'main'
 
 RSpec.describe Main do
-  def app
-    described_class.new
-  end
+  let(:app) { described_class.new }
 
   it 'renders the index page' do
+    stub(status: 200, body: '{"screen_name": "Jane"}')
     get '/'
     expect(last_response).to be_ok
     expect(last_response.body).to include('Hello')

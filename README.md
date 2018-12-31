@@ -49,6 +49,7 @@ $ rbenv rehash
 $ bundle install
 ```
 
+Then copy `.env_example` to `.env` and fill in with your credentials.
 
 ### To run the tests
 
@@ -86,7 +87,7 @@ Open your browser and go to http://localhost:9292/
 
 ### Useful links
 
-* [Testing external APIs in Ruby](# http://asquera.de/blog/2015-03-30/testing-external-apis-in-ruby/)
+* [Testing external APIs in Ruby](http://asquera.de/blog/2015-03-30/testing-external-apis-in-ruby/)
 * [Securing your webhooks](https://developer.github.com/webhooks/securing/)
 
 
