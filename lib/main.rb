@@ -16,10 +16,18 @@ class Main < Sinatra::Base
       access_secret: ENV['ACCESS_SECRET']
 
   get '/' do
-    client = SecureClient.new(VERIFY_URL, settings.credentials)
-    user = ResponseParser.new(client.verify_credentials).parsed_response
     @title = 'Hello'
-    @contents = user[:contents]
+    erb :index
+  end
+
+  get '/user' do
+    query = URI.encode_www_form('screen_name' => params['screen_name'])
+    url = "#{USERS_URL}?#{query}"
+
+    response = SecureClient.new(url, settings.credentials).verify_credentials
+    user = ResponseParser.new(response).parsed_response
+    @title = 'Hello'
+    @contents = user[:contents][:name]
     @message = user[:message]
     erb :index
   end

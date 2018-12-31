@@ -26,6 +26,15 @@ RSpec.describe Main do
     expect(last_response.body).to include('Hello')
   end
 
+  it 'renders a user' do
+    stub_request(:get, "#{USERS_URL}?screen_name=twitterdev")
+      .to_return(status: 200, body: File.read('spec/fixtures/user.json'))
+
+    get '/user', 'screen_name' => 'twitterdev'
+    expect(last_response).to be_ok
+    expect(last_response.body).to include('Twitter Dev')
+  end
+
   it 'renders a tweet' do
     stub_request(:get, "#{TWEETS_URL}?id=1079497619074940929")
       .to_return(status: 200, body: File.read('spec/fixtures/tweet.json'))
