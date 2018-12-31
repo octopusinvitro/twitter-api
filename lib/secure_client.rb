@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
-require 'constants'
+require 'oauth'
+
+require_relative 'constants'
 
 class SecureClient
-  def initialize
+  def initialize(credentials = {})
     secure
+    @credentials = credentials
   end
 
   def secure?
@@ -19,7 +22,7 @@ class SecureClient
     client.started?
   end
 
-  def oauth(consumer_key, access_token)
+  def authorize
     request.oauth!(client, consumer_key, access_token)
   end
 
@@ -29,9 +32,19 @@ class SecureClient
 
   private
 
+  attr_reader :credentials
+
   def secure
     client.use_ssl = true
     client.verify_mode = OpenSSL::SSL::VERIFY_PEER
+  end
+
+  def consumer_key
+    OAuth::Consumer.new(credentials[:api_key], credentials[:api_secret])
+  end
+
+  def access_token
+    OAuth::Token.new(credentials[:access_token], credentials[:access_secret])
   end
 
   def client

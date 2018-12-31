@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'oauth'
 require 'secure_client'
 
 RSpec.describe SecureClient do
@@ -17,24 +16,35 @@ RSpec.describe SecureClient do
     end
   end
 
-  describe 'when setting oauth' do
-    let(:result) do
-      consumer_key = OAuth::Consumer.new('12345', '67890')
-      access_token = OAuth::Token.new('12345', '67890')
-
-      secure_client.oauth(consumer_key, access_token)
+  describe 'when authorizing' do
+    let(:secure_client) do
+      credentials = {
+        api_key: '12345',
+        api_secret: '67890',
+        access_token: '12345',
+        access_secret: '67890'
+      }
+      described_class.new(credentials)
     end
 
-    it 'authorizes sets the consumer key' do
-      expect(result).to include('oauth_consumer_key="12345"')
+    it 'sets the consumer key' do
+      expect(secure_client.authorize).to include('oauth_consumer_key="12345"')
     end
 
-    it 'authorizes sets the token' do
-      expect(result).to include('oauth_token="12345"')
+    it 'sets the access token' do
+      expect(secure_client.authorize).to include('oauth_token="12345"')
     end
 
-    it 'authorizes sets the signature method' do
-      expect(result).to include('oauth_signature_method="HMAC-SHA1"')
+    it 'sets the signature method' do
+      expect(secure_client.authorize).to include('signature_method="HMAC-SHA1"')
+    end
+
+    it 'has no consumer key if no credentials passed' do
+      expect(described_class.new.authorize).not_to include('oauth_consumer_key')
+    end
+
+    it 'has no access token if no credentials passed' do
+      expect(described_class.new.authorize).not_to include('oauth_token')
     end
   end
 

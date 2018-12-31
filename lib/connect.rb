@@ -8,8 +8,8 @@ class Connect
 
   # The verify credentials endpoint returns a 200 status if
   # the request is signed correctly.
-  def verify_credentials(consumer_key, access_token)
-    secure_client.oauth(consumer_key, access_token)
+  def verify_credentials
+    secure_client.authorize
     secure_client.start
     secure_client.response
   end
