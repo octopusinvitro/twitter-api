@@ -15,7 +15,7 @@ RSpec.describe SecureClient do
   it 'sets up client to use SSL, which is required by Twitter' do
     stub_request(:get, VERIFY_URL)
       .to_return(status: 200, body: '{"screen_name": "Jane"}')
-    secure_client.verify_credentials
+    secure_client.get
     expect(secure_client.secure?).to be(true)
   end
 
@@ -23,13 +23,13 @@ RSpec.describe SecureClient do
     it 'sets the consumer key' do
       headers = { headers: { 'Authorization' => /oauth_consumer_key="12345"/ } }
       stub_request(:get, VERIFY_URL).with(headers)
-      secure_client.verify_credentials
+      secure_client.get
     end
 
     it 'sets the access token' do
       headers = { headers: { 'Authorization' => /oauth_token="12345"/ } }
       stub_request(:get, VERIFY_URL).with(headers)
-      secure_client.verify_credentials
+      secure_client.get
     end
 
     it 'sets the signature method' do
@@ -37,13 +37,13 @@ RSpec.describe SecureClient do
         'Authorization' => /signature_method="HMAC-SHA1"/
       } }
       stub_request(:get, VERIFY_URL).with(headers)
-      secure_client.verify_credentials
+      secure_client.get
     end
 
     it 'returns an OK response' do
       stub_request(:get, VERIFY_URL)
         .to_return(status: 200, body: '{"screen_name": "Jane"}')
-      response = secure_client.verify_credentials
+      response = secure_client.get
       expect(response.code).to eq('200')
     end
   end
@@ -54,18 +54,18 @@ RSpec.describe SecureClient do
     it 'has no consumer key' do
       headers = { headers: { 'Authorization' => /(?!oauth_consumer_key)/ } }
       stub_request(:get, VERIFY_URL).with(headers)
-      secure_client.verify_credentials
+      secure_client.get
     end
 
     it 'has no access token' do
       headers = { headers: { 'Authorization' => /(?!oauth_token)/ } }
       stub_request(:get, VERIFY_URL).with(headers)
-      secure_client.verify_credentials
+      secure_client.get
     end
 
     it 'returns a bad request error' do
       stub_request(:get, VERIFY_URL).to_return(status: 400, body: '')
-      response = secure_client.verify_credentials
+      response = secure_client.get
       expect(response.code).to eq('400')
     end
   end

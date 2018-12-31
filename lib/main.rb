@@ -24,7 +24,7 @@ class Main < Sinatra::Base
     query = URI.encode_www_form('screen_name' => params['screen_name'])
     url = "#{USERS_URL}?#{query}"
 
-    response = SecureClient.new(url, settings.credentials).verify_credentials
+    response = SecureClient.new(url, settings.credentials).get
     user = ResponseParser.new(response).parsed_response
     @title = 'Hello'
     @contents = user[:contents][:name]
@@ -36,7 +36,7 @@ class Main < Sinatra::Base
     query = URI.encode_www_form('id' => params['id'])
     url = "#{TWEETS_URL}?#{query}"
 
-    response = SecureClient.new(url, settings.credentials).verify_credentials
+    response = SecureClient.new(url, settings.credentials).get
     tweet = ResponseParser.new(response).parsed_response
     @title = 'Tweet'
     @contents = tweet[:contents][:user][:name] + ' - ' + tweet[:contents][:text]
@@ -51,7 +51,7 @@ class Main < Sinatra::Base
     )
     url = "#{TIMELINE_URL}?#{query}"
 
-    response = SecureClient.new(url, settings.credentials).verify_credentials
+    response = SecureClient.new(url, settings.credentials).get
     tweets = ResponseParser.new(response).parsed_response
     @title = 'Timeline'
     @contents = tweets[:contents].map { |tweet| tweet[:text] }

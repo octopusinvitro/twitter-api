@@ -22,7 +22,6 @@ RSpec.describe Main do
       .to_return(status: 200, body: '{"screen_name": "Jane"}')
 
     get '/'
-    expect(last_response).to be_ok
     expect(last_response.body).to include('Hello')
   end
 
@@ -31,7 +30,6 @@ RSpec.describe Main do
       .to_return(status: 200, body: File.read('spec/fixtures/user.json'))
 
     get '/user', 'screen_name' => 'twitterdev'
-    expect(last_response).to be_ok
     expect(last_response.body).to include('Twitter Dev')
   end
 
@@ -40,7 +38,6 @@ RSpec.describe Main do
       .to_return(status: 200, body: File.read('spec/fixtures/tweet.json'))
 
     get '/tweet', 'id' => '1079497619074940929'
-    expect(last_response).to be_ok
     expect(last_response.body).to include('#HappyNewYear')
   end
 
@@ -49,7 +46,6 @@ RSpec.describe Main do
       .to_return(status: 200, body: File.read('spec/fixtures/timeline.json'))
 
     get '/timeline', 'screen_name' => 'twitterapi'
-    expect(last_response).to be_ok
     expect(last_response.body).to include('Twitter APIs')
   end
 end

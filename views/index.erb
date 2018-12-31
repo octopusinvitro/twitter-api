@@ -8,7 +8,7 @@
 
 <form method="GET" action="/user" autocomplete="on">
   <label for="screen_name">Twitter handle</label>
-  <input name="screen_name" id="screen_name" type="text" />
+  <input name="screen_name" id="screen_name" type="text" required />
   <button>Get user info</button>
 </form>
 
@@ -19,7 +19,7 @@
 </form>
 
 <form method="GET" action="/timeline" autocomplete="on">
-  <label for="screen_name">Twitter screen name</label>
+  <label for="screen_name">Twitter handle</label>
   <input name="screen_name" id="screen_name" type="text" />
   <button>Get user timeline</button>
 </form>

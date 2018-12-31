@@ -10,7 +10,7 @@ class SecureClient
     @credentials = credentials
   end
 
-  def verify_credentials
+  def get
     secure
     authorize
     response
