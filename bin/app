@@ -13,7 +13,6 @@ use Sass::Plugin::Rack
 require 'constants'
 require 'messages'
 require 'secure_client'
-require 'net_http_get'
 require 'connect'
 require 'parser'
 require 'main'

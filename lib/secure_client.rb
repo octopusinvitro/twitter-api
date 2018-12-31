@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'constants'
+
 class SecureClient
   def initialize
     secure
@@ -17,7 +19,11 @@ class SecureClient
     client.started?
   end
 
-  def request(request)
+  def oauth(consumer_key, access_token)
+    request.oauth!(client, consumer_key, access_token)
+  end
+
+  def response
     client.request(request)
   end
 
@@ -30,5 +36,9 @@ class SecureClient
 
   def client
     @client ||= Net::HTTP.new(VERIFY_URL.host, VERIFY_URL.port)
+  end
+
+  def request
+    @request ||= Net::HTTP::Get.new(VERIFY_URL.request_uri)
   end
 end

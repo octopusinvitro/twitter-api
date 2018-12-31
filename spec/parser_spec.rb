@@ -2,11 +2,7 @@
 
 RSpec.describe 'Parser' do
   let(:parser) { Parser.new }
-  let(:secure_client) { SecureClient.new }
-  let(:net_http_get) do
-    NetHttpGet.new(Net::HTTP::Get.new(VERIFY_URL.request_uri))
-  end
-  let(:response) { secure_client.request(net_http_get.request) }
+  let(:response) { SecureClient.new.response }
 
   describe 'when response is successful' do
     before do

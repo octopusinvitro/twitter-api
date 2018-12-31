@@ -10,7 +10,6 @@ use Sass::Plugin::Rack
 require './lib/constants'
 require './lib/messages'
 require './lib/secure_client'
-require './lib/net_http_get'
 require './lib/connect'
 require './lib/parser'
 require './lib/main'

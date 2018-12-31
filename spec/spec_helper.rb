@@ -7,12 +7,8 @@ Coveralls.wear!
 require 'sinatra'
 require 'rack/test'
 require 'webmock/rspec'
-require 'oauth'
 
-require 'constants'
 require 'messages'
-require 'secure_client'
-require 'net_http_get'
 require 'connect'
 require 'parser'
 require 'main'
