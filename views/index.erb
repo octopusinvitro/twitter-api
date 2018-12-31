@@ -1,3 +1,13 @@
-<p><%= @contents %></p>
-<p><%= @message %></p>
+<p>Hello.</p>
+<p>This is a simple app to play with the Twitter API.</p>
 
+<%= "<p>#{@contents}</p>" if @contents %>
+<%= "<p>#{@message}</p>" if @message %>
+
+<p>Select your drug:</p>
+
+<form method="POST" action="/user" autocomplete="on">
+  <label for="username">Twitter username</label>
+  <input name="username" id="username" type="text" />
+  <button>Get user info</button>
+</form>

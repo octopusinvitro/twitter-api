@@ -8,6 +8,7 @@ require_relative 'secure_client'
 
 class Main < Sinatra::Base
   set :views, "#{settings.root}/../views"
+  set :public_folder, "#{settings.root}/../public"
   set :credentials,
       api_key: ENV['API_KEY'],
       api_secret: ENV['API_SECRET'],

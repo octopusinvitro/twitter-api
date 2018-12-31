@@ -59,7 +59,6 @@ build-iPhoneSimulator/
 *.map
 .sass-cache
 public/stylesheets/*.css
-!public/stylesheets/main.css
 
 # Test quality
 .coveralls.yml
