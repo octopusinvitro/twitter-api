@@ -5,7 +5,8 @@ require 'oauth'
 require_relative 'constants'
 
 class SecureClient
-  def initialize(credentials = {})
+  def initialize(url, credentials = {})
+    @url = url
     @credentials = credentials
   end
 
@@ -21,7 +22,7 @@ class SecureClient
 
   private
 
-  attr_reader :credentials
+  attr_reader :url, :credentials
 
   def secure
     client.use_ssl = true
@@ -43,10 +44,14 @@ class SecureClient
   end
 
   def client
-    @client ||= Net::HTTP.new(VERIFY_URL.host, VERIFY_URL.port)
+    @client ||= Net::HTTP.new(uri.host, uri.port)
   end
 
   def request
-    @request ||= Net::HTTP::Get.new(VERIFY_URL.request_uri)
+    @request ||= Net::HTTP::Get.new(uri)
+  end
+
+  def uri
+    @uri ||= URI(url.to_s)
   end
 end

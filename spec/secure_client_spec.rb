@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'secure_client'
+require 'constants'
 
 RSpec.describe SecureClient do
   let(:secure_client) do
@@ -8,7 +9,7 @@ RSpec.describe SecureClient do
       api_key: '12345', api_secret: '67890',
       access_token: '12345', access_secret: '67890'
     }
-    described_class.new(credentials)
+    described_class.new(VERIFY_URL, credentials)
   end
 
   it 'sets up client to use SSL, which is required by Twitter' do
@@ -46,7 +47,7 @@ RSpec.describe SecureClient do
   end
 
   describe 'when not authorized' do
-    let(:secure_client) { described_class.new }
+    let(:secure_client) { described_class.new(VERIFY_URL) }
 
     it 'has no consumer key' do
       headers = { headers: { 'Authorization' => /(?!oauth_consumer_key)/ } }
