@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Main' do
+require 'main'
+
+RSpec.describe Main do
   def app
-    Main.new
+    described_class.new
   end
 
   it 'renders the index page' do
