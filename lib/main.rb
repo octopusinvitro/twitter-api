@@ -4,6 +4,7 @@ require 'sinatra'
 
 require_relative 'page/index'
 require_relative 'page/not_found'
+require_relative 'page/post'
 require_relative 'page/timeline'
 require_relative 'page/tweet'
 require_relative 'page/user'
@@ -35,6 +36,11 @@ class Main < Sinatra::Base
   get '/timeline' do
     @page = Page::Timeline.new(params, settings.credentials)
     erb :timeline
+  end
+
+  get '/post' do
+    @page = Page::Post.new(params, settings.credentials)
+    erb :post
   end
 
   not_found do

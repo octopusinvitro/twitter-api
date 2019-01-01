@@ -48,4 +48,13 @@ RSpec.describe Main do
     get '/timeline', 'screen_name' => 'twitterapi'
     expect(last_response.body).to include('Twitter APIs')
   end
+
+  it 'posts a tweet' do
+    stub_request(:post, POST_URL)
+      .with(body: 'status=alohomora')
+      .to_return(status: 200, body: File.read('spec/fixtures/post.json'))
+
+    get '/post', 'status' => 'alohomora'
+    expect(last_response.body).to include('alohomora')
+  end
 end

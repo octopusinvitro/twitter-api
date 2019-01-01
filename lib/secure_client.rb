@@ -9,12 +9,19 @@ class SecureClient
     @url = url
     @query = query
     @credentials = credentials
+    secure
   end
 
   def get
-    secure
     authorize
     response
+  end
+
+  def post(data)
+    # require 'pry';binding.pry
+
+    authorize_post(data)
+    response_post
   end
 
   def secure?
@@ -40,8 +47,26 @@ class SecureClient
     request.oauth!(client, consumer_key, access_token)
   end
 
+  def authorize_post(data)
+    consumer_key = OAuth::Consumer.new(
+      credentials[:api_key], credentials[:api_secret]
+    )
+    access_token = OAuth::Token.new(
+      credentials[:access_token], credentials[:access_secret]
+    )
+
+    post_request.oauth!(client, consumer_key, access_token)
+
+    post_request['Content-Type'] = 'application/json'
+    post_request.set_form_data(data)
+  end
+
   def response
     client.start { |http| http.request(request) }
+  end
+
+  def response_post
+    client.start { |http| http.request(post_request) }
   end
 
   def client
@@ -50,6 +75,10 @@ class SecureClient
 
   def request
     @request ||= Net::HTTP::Get.new(uri)
+  end
+
+  def post_request
+    @post_request ||= Net::HTTP::Post.new(uri)
   end
 
   def uri

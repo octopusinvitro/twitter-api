@@ -21,6 +21,7 @@ class ResponseParser
   attr_reader :response
 
   def contents
+    File.write('./spec/fixtures/post.json', response.body)
     JSON.parse(response.body, symbolize_names: true)
   end
 
