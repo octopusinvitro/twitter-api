@@ -3,6 +3,7 @@
 require 'sinatra'
 
 require_relative 'constants'
+require_relative 'page/index'
 require_relative 'response_parser'
 require_relative 'secure_client'
 
@@ -16,7 +17,7 @@ class Main < Sinatra::Base
       access_secret: ENV['ACCESS_SECRET']
 
   get '/' do
-    @title = 'Hello'
+    @title = Page::Index.new.title
     erb :index
   end
 

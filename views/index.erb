@@ -1,25 +1,4 @@
-<p>Hello.</p>
-<p>This is a simple app to play with the Twitter API.</p>
-
 <%= "<p>#{@contents}</p>" if @contents %>
 <%= "<p>#{@message}</p>" if @message %>
 
 <p>Select your drug:</p>
-
-<form method="GET" action="/user" autocomplete="on">
-  <label for="screen_name">Twitter handle</label>
-  <input name="screen_name" id="screen_name" type="text" required />
-  <button>Get user info</button>
-</form>
-
-<form method="GET" action="/tweet" autocomplete="on">
-  <label for="id">Tweet id</label>
-  <input name="id" id="id" type="text" required />
-  <button>Get user tweet</button>
-</form>
-
-<form method="GET" action="/timeline" autocomplete="on">
-  <label for="screen_name">Twitter handle</label>
-  <input name="screen_name" id="screen_name" type="text" />
-  <button>Get user timeline</button>
-</form>
