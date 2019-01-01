@@ -3,26 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title><%= @title %></title>
+  <title><%= @page.title %></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="public/stylesheets/main.css">
-  <script src="assets/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" href="stylesheets/main.css">
+  <script src="vendor/modernizr-2.8.3.min.js"></script>
 </head>
+
 <body>
-
   <article class="container">
-
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <p>Hello.</p>
+    <p>This is a simple app to play with the Twitter API.</p>
+
     <%= yield %>
 
+    <form method="GET" action="/user" autocomplete="on">
+      <label for="screen_name">Twitter handle</label>
+      <input name="screen_name" id="screen_name" type="text" required />
+      <button>Get user info</button>
+    </form>
+
+    <form method="GET" action="/tweet" autocomplete="on">
+      <label for="id">Tweet id</label>
+      <input name="id" id="id" type="text" required />
+      <button>Get user tweet</button>
+    </form>
+
+    <form method="GET" action="/timeline" autocomplete="on">
+      <label for="screen_name">Twitter handle</label>
+      <input name="screen_name" id="screen_name" type="text" />
+      <button>Get user timeline</button>
+    </form>
+
+    <form method="GET" action="/post" autocomplete="on">
+      <label for="status">Twitter message</label>
+      <textarea name="status" id="status" rows="5" cols="33"
+                maxlength="280" minlength="1" required></textarea>
+      <button>Post Tweet</button>
+    </form>
   </article>
 
   <footer class="footer">
@@ -35,7 +61,7 @@
 
   <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script>window.jQuery || document.write("<script src="assets/vendor/jquery-1.12.0.min.js"><\/script>")</script>
-  <script src="public/javascripts/main.js"></script>
+  <script src="javascripts/main.js"></script>
 
 </body>
 </html>

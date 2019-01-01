@@ -1,0 +1,14 @@
+<p class="status"><%= @page.status %></p>
+
+<div class="card">
+  <p><strong>Name:</strong> <a href="<%= @page.url %>"><%= @page.name %></a></p>
+  <p><strong>Location:</strong> <%= @page.location %></p>
+  <p><strong>Description:</strong> <%= @page.description %></p>
+
+  <div class="numbers">
+    <p><strong>Followers:</strong> <span><%= @page.followers_count %></span></p>
+    <p><strong>Following:</strong> <span><%= @page.friends_count %></span></p>
+    <p><strong>Likes:</strong> <span><%= @page.favourites_count %></span></p>
+    <p><strong>Tweets:</strong> <span><%= @page.statuses_count %></span></p>
+  </div>
+</div>

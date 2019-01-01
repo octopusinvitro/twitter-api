@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 
+gem 'dotenv', '~> 2.5'
 gem 'oauth', '~> 0.5.1'
 gem 'sass', '~> 3.4', '>= 3.4.22'
 gem 'sinatra'

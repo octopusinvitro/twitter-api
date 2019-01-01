@@ -9,7 +9,7 @@ class ResponseParser
     @response = response
   end
 
-  def parse_user
+  def parsed_response
     {
       contents: contents,
       message: message
@@ -33,7 +33,7 @@ class ResponseParser
   end
 
   def success_message
-    Messages.success(contents[:screen_name])
+    Messages.success
   end
 
   def failure_message

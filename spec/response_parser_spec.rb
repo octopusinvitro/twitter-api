@@ -3,7 +3,7 @@
 require 'response_parser'
 
 RSpec.describe ResponseParser do
-  let(:user) { described_class.new(response).parse_user }
+  let(:user) { described_class.new(response).parsed_response }
 
   describe 'when response is successful' do
     let(:response) { FakeResponse.new('{"screen_name": "Jane"}', '200') }
@@ -13,7 +13,7 @@ RSpec.describe ResponseParser do
     end
 
     it 'sends a welcome message' do
-      expect(user[:message]).to include('Jane')
+      expect(user[:message]).to include('Success')
     end
   end
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Messages
-  def self.success(name)
-    "Hello, #{name}!"
+  def self.success
+    'Success!'
   end
 
   def self.failure(code)

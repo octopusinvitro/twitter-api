@@ -49,6 +49,7 @@ $ rbenv rehash
 $ bundle install
 ```
 
+Go to https://developer.twitter.com/en/apps, create an app and take note of your credentials. Make sure the permissions are set to "Read and write". Then copy `.env_example` to `.env` and replace with your app's credentials.
 
 ### To run the tests
 
@@ -86,8 +87,14 @@ Open your browser and go to http://localhost:9292/
 
 ### Useful links
 
-* [Testing external APIs in Ruby](# http://asquera.de/blog/2015-03-30/testing-external-apis-in-ruby/)
+* [Testing external APIs in Ruby](http://asquera.de/blog/2015-03-30/testing-external-apis-in-ruby/)
 * [Securing your webhooks](https://developer.github.com/webhooks/securing/)
+* [Twitter API - reference](https://developer.twitter.com/en/docs/api-reference-index)
+* [Twitter API - verify credentials](https://developer.twitter.com/en/docs/accounts-and-users/manage-account-settings/api-reference/get-account-verify_credentials)
+* [Twitter API - show user](https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show)
+* [Twitter API - show tweet](https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id)
+* [Twitter API - user timeline](https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline)
+* [Twitter API - post tweet](https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update)
 
 
 ## License
