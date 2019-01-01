@@ -4,6 +4,7 @@ require 'sinatra'
 
 require_relative 'constants'
 require_relative 'page/index'
+require_relative 'page/user'
 require_relative 'response_parser'
 require_relative 'secure_client'
 
@@ -27,10 +28,10 @@ class Main < Sinatra::Base
 
     response = SecureClient.new(url, settings.credentials).get
     user = ResponseParser.new(response).parsed_response
-    @title = 'Hello'
-    @contents = user[:contents][:name]
-    @message = user[:message]
-    erb :index
+
+    @page = Page::User.new(user)
+    @title = @page.title
+    erb :user
   end
 
   get '/tweet' do
