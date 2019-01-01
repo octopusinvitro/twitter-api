@@ -1,0 +1,10 @@
+<p class="status"><%= @page.status %></p>
+
+<div class="card">
+  <p>Tweets by <a href="<%= @page.url %>"><%= @page.name %></a>:</p>
+  <ul>
+    <% @page.list.each do |tweet| %>
+    <li><%= tweet %></li>
+    <% end %>
+  </ul>
+</div>
