@@ -4,6 +4,7 @@ require 'sinatra'
 
 require_relative 'constants'
 require_relative 'page/index'
+require_relative 'page/not_found'
 require_relative 'page/timeline'
 require_relative 'page/tweet'
 require_relative 'page/user'
@@ -20,7 +21,7 @@ class Main < Sinatra::Base
       access_secret: ENV['ACCESS_SECRET']
 
   get '/' do
-    @title = Page::Index.new.title
+    @page = Page::Index.new
     erb :index
   end
 
@@ -32,7 +33,6 @@ class Main < Sinatra::Base
     user = ResponseParser.new(response).parsed_response
 
     @page = Page::User.new(user)
-    @title = @page.title
     erb :user
   end
 
@@ -44,7 +44,6 @@ class Main < Sinatra::Base
     tweet = ResponseParser.new(response).parsed_response
 
     @page = Page::Tweet.new(tweet)
-    @title = @page.title
     erb :tweet
   end
 
@@ -59,13 +58,12 @@ class Main < Sinatra::Base
     tweets = ResponseParser.new(response).parsed_response
 
     @page = Page::Timeline.new(tweets)
-    @title = @page.title
     erb :timeline
   end
 
   not_found do
     status 404
-    @title = 'Page Not Found'
+    @page = Page::NotFound.new
     erb :oops
   end
 end
