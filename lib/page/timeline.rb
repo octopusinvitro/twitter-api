@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 require_relative '../constants'
+require_relative '../response_parser'
+require_relative '../secure_client'
 
 module Page
   class Timeline
     DEFAULT_STATUS = 'Unknown status'
     DEFAULT_NAME = 'Somebody'
 
-    def initialize(tweets = {})
-      @tweets = tweets
+    def initialize(params = {}, credentials = {})
+      @params = params
+      @credentials = credentials
     end
 
     def title
@@ -33,6 +36,17 @@ module Page
 
     private
 
-    attr_reader :tweets
+    attr_reader :params, :credentials
+
+    def tweets
+      query = URI.encode_www_form(
+        'screen_name' => params['screen_name'],
+        'count' => 10
+      )
+      url = "#{TIMELINE_URL}?#{query}"
+
+      response = SecureClient.new(url, credentials).get
+      ResponseParser.new(response).parsed_response
+    end
   end
 end

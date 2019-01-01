@@ -2,14 +2,11 @@
 
 require 'sinatra'
 
-require_relative 'constants'
 require_relative 'page/index'
 require_relative 'page/not_found'
 require_relative 'page/timeline'
 require_relative 'page/tweet'
 require_relative 'page/user'
-require_relative 'response_parser'
-require_relative 'secure_client'
 
 class Main < Sinatra::Base
   set :views, "#{settings.root}/../views"
@@ -26,38 +23,17 @@ class Main < Sinatra::Base
   end
 
   get '/user' do
-    query = URI.encode_www_form('screen_name' => params['screen_name'])
-    url = "#{USERS_URL}?#{query}"
-
-    response = SecureClient.new(url, settings.credentials).get
-    user = ResponseParser.new(response).parsed_response
-
-    @page = Page::User.new(user)
+    @page = Page::User.new(params, settings.credentials)
     erb :user
   end
 
   get '/tweet' do
-    query = URI.encode_www_form('id' => params['id'])
-    url = "#{TWEETS_URL}?#{query}"
-
-    response = SecureClient.new(url, settings.credentials).get
-    tweet = ResponseParser.new(response).parsed_response
-
-    @page = Page::Tweet.new(tweet)
+    @page = Page::Tweet.new(params, settings.credentials)
     erb :tweet
   end
 
   get '/timeline' do
-    query = URI.encode_www_form(
-      'screen_name' => params['screen_name'],
-      'count' => 10
-    )
-    url = "#{TIMELINE_URL}?#{query}"
-
-    response = SecureClient.new(url, settings.credentials).get
-    tweets = ResponseParser.new(response).parsed_response
-
-    @page = Page::Timeline.new(tweets)
+    @page = Page::Timeline.new(params, settings.credentials)
     erb :timeline
   end
 

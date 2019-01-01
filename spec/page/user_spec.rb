@@ -4,12 +4,10 @@ require 'page/user'
 
 RSpec.describe Page::User do
   let(:user) do
-    user_fixture = File.read('spec/fixtures/user.json')
-    user_data = {
-      contents: JSON.parse(user_fixture, symbolize_names: true),
-      message: 'Success!'
-    }
-    described_class.new(user_data)
+    stub_request(:get, "#{USERS_URL}?screen_name=twitterdev")
+      .to_return(status: 200, body: File.read('spec/fixtures/user.json'))
+
+    described_class.new('screen_name' => 'twitterdev')
   end
 
   it 'has a title' do
@@ -52,7 +50,14 @@ RSpec.describe Page::User do
     expect(user.statuses_count).to eq(3368)
   end
 
-  describe 'when user data is malformed' do
+  xdescribe 'when user data is malformed' do
+    let(:user) do
+      stub_request(:get, "#{USERS_URL}?screen_name")
+        .to_return(status: 200, body: '')
+
+      described_class.new('screen_name' => '')
+    end
+
     it 'has a status anyway' do
       expect(described_class.new.status).to eq(described_class::DEFAULT_STATUS)
     end
@@ -66,7 +71,8 @@ RSpec.describe Page::User do
     end
 
     it 'has a location anyway' do
-      expect(described_class.new.location).to eq(described_class::DEFAULT_LOCATION)
+      expect(described_class.new.location)
+        .to eq(described_class::DEFAULT_LOCATION)
     end
   end
 end

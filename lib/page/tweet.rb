@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../constants'
+require_relative '../response_parser'
+require_relative '../secure_client'
 
 module Page
   class Tweet
@@ -8,8 +10,9 @@ module Page
     DEFAULT_NAME = 'Somebody'
     DEFAULT_TEXT = 'Something...'
 
-    def initialize(tweet = {})
-      @tweet = tweet
+    def initialize(params = {}, credentials = {})
+      @params = params
+      @credentials = credentials
     end
 
     def title
@@ -34,6 +37,14 @@ module Page
 
     private
 
-    attr_reader :tweet
+    attr_reader :params, :credentials
+
+    def tweet
+      query = URI.encode_www_form('id' => params['id'])
+      url = "#{TWEETS_URL}?#{query}"
+
+      response = SecureClient.new(url, credentials).get
+      ResponseParser.new(response).parsed_response
+    end
   end
 end

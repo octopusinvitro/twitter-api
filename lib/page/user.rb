@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../constants'
+require_relative '../response_parser'
+require_relative '../secure_client'
 
 module Page
   class User
@@ -8,8 +10,9 @@ module Page
     DEFAULT_NAME = 'Unknown name'
     DEFAULT_LOCATION = 'Unknown location'
 
-    def initialize(user = {})
-      @user = user
+    def initialize(params = {}, credentials = {})
+      @params = params
+      @credentials = credentials
     end
 
     def title
@@ -54,6 +57,14 @@ module Page
 
     private
 
-    attr_reader :user
+    attr_reader :params, :credentials
+
+    def user
+      query = URI.encode_www_form('screen_name' => params['screen_name'])
+      url = "#{USERS_URL}?#{query}"
+
+      response = SecureClient.new(url, credentials).get
+      ResponseParser.new(response).parsed_response
+    end
   end
 end
