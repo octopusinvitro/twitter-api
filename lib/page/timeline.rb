@@ -39,13 +39,11 @@ module Page
     attr_reader :params, :credentials
 
     def tweets
-      query = URI.encode_www_form(
+      query = {
         'screen_name' => params['screen_name'],
         'count' => 10
-      )
-      url = "#{TIMELINE_URL}?#{query}"
-
-      response = SecureClient.new(url, credentials).get
+      }
+      response = SecureClient.new(TIMELINE_URL, query, credentials).get
       ResponseParser.new(response).parsed_response
     end
   end

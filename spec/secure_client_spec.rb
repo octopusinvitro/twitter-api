@@ -9,7 +9,7 @@ RSpec.describe SecureClient do
       api_key: '12345', api_secret: '67890',
       access_token: '12345', access_secret: '67890'
     }
-    described_class.new(VERIFY_URL, credentials)
+    described_class.new(VERIFY_URL, nil, credentials)
   end
 
   it 'sets up client to use SSL, which is required by Twitter' do
@@ -17,6 +17,14 @@ RSpec.describe SecureClient do
       .to_return(status: 200, body: '{"screen_name": "Jane"}')
     secure_client.get
     expect(secure_client.secure?).to be(true)
+  end
+
+  it 'accepts query parameters' do
+    stub_request(:get, "#{VERIFY_URL}?skip_status=1")
+      .to_return(status: 200, body: '{"screen_name": "Jane"}')
+
+    response = described_class.new(VERIFY_URL, 'skip_status' => 1).get
+    expect(response.code).to eq('200')
   end
 
   describe 'when authorized' do

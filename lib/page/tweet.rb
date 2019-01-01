@@ -40,10 +40,8 @@ module Page
     attr_reader :params, :credentials
 
     def tweet
-      query = URI.encode_www_form('id' => params['id'])
-      url = "#{TWEETS_URL}?#{query}"
-
-      response = SecureClient.new(url, credentials).get
+      query = { 'id' => params['id'] }
+      response = SecureClient.new(TWEETS_URL, query, credentials).get
       ResponseParser.new(response).parsed_response
     end
   end

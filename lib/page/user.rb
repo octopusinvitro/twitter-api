@@ -60,10 +60,8 @@ module Page
     attr_reader :params, :credentials
 
     def user
-      query = URI.encode_www_form('screen_name' => params['screen_name'])
-      url = "#{USERS_URL}?#{query}"
-
-      response = SecureClient.new(url, credentials).get
+      query = { 'screen_name' => params['screen_name'] }
+      response = SecureClient.new(USERS_URL, query, credentials).get
       ResponseParser.new(response).parsed_response
     end
   end
