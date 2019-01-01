@@ -4,6 +4,7 @@ require 'sinatra'
 
 require_relative 'constants'
 require_relative 'page/index'
+require_relative 'page/tweet'
 require_relative 'page/user'
 require_relative 'response_parser'
 require_relative 'secure_client'
@@ -40,10 +41,10 @@ class Main < Sinatra::Base
 
     response = SecureClient.new(url, settings.credentials).get
     tweet = ResponseParser.new(response).parsed_response
-    @title = 'Tweet'
-    @contents = tweet[:contents][:user][:name] + ' - ' + tweet[:contents][:text]
-    @message = tweet[:message]
-    erb :index
+
+    @page = Page::Tweet.new(tweet)
+    @title = @page.title
+    erb :tweet
   end
 
   get '/timeline' do
