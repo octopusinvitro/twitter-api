@@ -19,7 +19,7 @@ GEM
     ffi (1.10.0)
     hashdiff (0.3.7)
     jaro_winkler (1.5.4)
-    json (2.2.0)
+    json (2.3.0)
     method_source (1.0.0)
     mustermann (1.1.0)
       ruby2_keywords (~> 0.0.1)
